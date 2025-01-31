@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Providers;
-
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use  Illuminate\Support\Facades\View;
 
@@ -20,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // View::share('year',date('Y-M-D'));
+        Paginator::defaultView('pagination');
+        View::share('year',date('Y-M-D'));
     }
 }

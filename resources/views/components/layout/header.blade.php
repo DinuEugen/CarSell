@@ -1,7 +1,7 @@
 <header class="navbar">
     <div class="container navbar-content">
         <a href="/" class="logo-wrapper">
-            <img src="/img/logoipsum-265.svg" alt="Logo" />
+            <img src="/img/avatar1.png" alt="Logo" />
         </a>
         <button class="btn btn-default btn-navbar-toggle">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -19,9 +19,12 @@
 
                 Add new Car
             </a>
+            @auth
+
+
             <div class="navbar-menu" tabindex="-1">
                 <a href="javascript:void(0)" class="navbar-menu-handler">
-                    My Account
+                    Welcome, {{ \Illuminate\Support\Facades\Auth::user()->name }}
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" style="width: 20px">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
@@ -35,12 +38,15 @@
                         <a href="watchlist.html">My Favourite Cars</a>
                     </li>
                     <li>
-                        <form action="#" method="post">
+                        <form action="{{ route('logout') }}" method="post">
+                            @csrf
                             <button>Logout</button>
                         </form>
                     </li>
                 </ul>
             </div>
+            @endauth
+            @guest
             <a href="{{ route('signup') }}" class="btn btn-primary btn-signup">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" style="width: 18px; margin-right: 4px">
@@ -59,6 +65,7 @@
                 </svg>
                 Login
             </a>
+            @endguest
         </div>
     </div>
 </header>
